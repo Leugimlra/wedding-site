@@ -1,0 +1,71 @@
+---
+export interface Props {
+  title: string;
+  subtitle: string;
+  maxWidth?: string;
+}
+
+const { title, subtitle, maxWidth = '800px' } = Astro.props;
+---
+
+<div class="page-container">
+  <div class="content-card" style={`max-width: ${maxWidth};`}>
+    <h1 class="title">{title}</h1>
+    <p class="subtitle">{subtitle}</p>
+    <div class="card-body">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px); /* Accounts for the header */
+    padding: 3rem 2rem;
+    background-color: var(--bg-primary);
+  }
+
+  .content-card {
+    background: var(--bg-card);
+    width: 100%;
+    padding: 4rem 3rem;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(42, 46, 41, 0.05);
+    border: 1px solid var(--accent-sage);
+  }
+
+  .title {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .card-body {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .content-card {
+      padding: 3rem 1.5rem;
+    }
+    .title {
+      font-size: 2.2rem;
+    }
+  }
+</style>

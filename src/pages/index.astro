@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageCard from '../components/PageCard.astro';
+---
+
+<Layout>
+  <PageCard title="Welcome to Our Wedding" subtitle="We can't wait to celebrate with you!">
+    <div class="card-content">
+      <!-- Content and images can go here -->
+      <p>Save the date and join us for a beautiful celebration.</p>
+      <div class="image-placeholder">
+        <span>Your beautiful photo here</span>
+      </div>
+    </div>
+  </PageCard>
+</Layout>
+
+<style>
+  .card-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+    text-align: center;
+  }
+
+  .image-placeholder {
+    margin-top: 2rem;
+    width: 100%;
+    height: 350px;
+    background-color: #f8f8f8;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a0a0a0;
+    font-style: italic;
+    border: 2px dashed #e0e0e0;
+  }
+</style>

@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageCard from '../components/PageCard.astro';
+---
+
+<Layout>
+  <PageCard title="Wedding Party" subtitle="The people standing by our side" maxWidth="900px">
+    <div class="party-list">
+      <!-- Party Member 1 -->
+      <div class="party-member">
+        <div class="portrait-placeholder">Photo</div>
+        <div class="member-info">
+          <h2>Jane Doe</h2>
+          <p class="role">Maid of Honor</p>
+          <p class="blurb">Jane and I met in college and have been best friends ever since. From late-night study sessions to spontaneous road trips, she's always been there.</p>
+        </div>
+      </div>
+
+      <!-- Party Member 2 -->
+      <div class="party-member reverse">
+        <div class="portrait-placeholder">Photo</div>
+        <div class="member-info">
+          <h2>John Smith</h2>
+          <p class="role">Best Man</p>
+          <p class="blurb">John is my brother and partner in crime. We've shared countless memories growing up together, and I couldn't imagine getting married without him.</p>
+        </div>
+      </div>
+
+      <!-- Party Member 3 -->
+      <div class="party-member">
+        <div class="portrait-placeholder">Photo</div>
+        <div class="member-info">
+          <h2>Emily White</h2>
+          <p class="role">Bridesmaid</p>
+          <p class="blurb">Emily is the creative soul of the group. Her energy and kindness are infectious, and she always knows how to make everyone laugh.</p>
+        </div>
+      </div>
+    </div>
+  </PageCard>
+</Layout>
+
+<style>
+  .party-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .party-member {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--accent-sage);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .party-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(42,46,41,0.05);
+  }
+
+  .party-member.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .portrait-placeholder {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--bg-primary);
+    border: 2px dashed var(--accent-sage);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+
+  .member-info h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    margin: 0 0 0.2rem 0;
+  }
+
+  .role {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .blurb {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .party-member, .party-member.reverse {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

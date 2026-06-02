@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageCard from '../components/PageCard.astro';
+---
+
+<Layout>
+  <PageCard title="Directions" subtitle="How to get to our venue">
+    <div class="directions-content">
+      <div class="venue-info">
+        <h2>The Grand Estate</h2>
+        <p>123 Celebration Lane<br/>Beautiful City, ST 12345</p>
+      </div>
+
+      <div class="map-placeholder">
+        <span>Interactive Map Placeholder</span>
+      </div>
+
+      <div class="instructions">
+        <h3>Driving Instructions</h3>
+        <p>From the North: Take Highway 1 South, exit at Celebration Lane. Turn right and follow the signs for 2 miles.</p>
+        <p>From the South: Take Highway 1 North, exit at Celebration Lane. Turn left and follow the signs for 2 miles.</p>
+        
+        <h3>Parking</h3>
+        <p>Valet parking will be available at the main entrance. Self-parking is also located at the rear of the estate.</p>
+      </div>
+    </div>
+  </PageCard>
+</Layout>
+
+<style>
+  .directions-content {
+    text-align: center;
+  }
+
+  .venue-info h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .venue-info p {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+
+  .map-placeholder {
+    margin: 3rem 0;
+    width: 100%;
+    height: 300px;
+    background-color: var(--bg-primary);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    font-style: italic;
+    border: 2px dashed var(--accent-sage);
+  }
+
+  .instructions {
+    text-align: left;
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--accent-sage);
+  }
+
+  .instructions h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .instructions h3:first-child {
+    margin-top: 0;
+  }
+
+  .instructions p {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+</style>
