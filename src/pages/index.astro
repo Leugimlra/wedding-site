@@ -1,39 +1,105 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageCard from '../components/PageCard.astro';
+import { Image } from 'astro:assets';
+
+import img1 from '../assets/homepage-pics/MigandTim - 1.png';
+import img2 from '../assets/homepage-pics/MigandTim - 2.png';
+import img3 from '../assets/homepage-pics/MigandTim - 3.png';
 ---
 
 <Layout>
-  <PageCard title="Welcome to Our Wedding" subtitle="We can't wait to celebrate with you!">
+  <PageCard title="Timothy and Miguel" subtitle="October 10, 2026" maxWidth="1000px">
     <div class="card-content">
-      <!-- Content and images can go here -->
-      <p>Save the date and join us for a beautiful celebration.</p>
-      <div class="image-placeholder">
-        <span>Your beautiful photo here</span>
+      <h3 class="welcome-text">We invite you celebrate with us as we become husbands.</h3>
+      
+      <div class="photo-gallery">
+        <Image 
+          src={img1} 
+          alt="Miguel and Tim 1" 
+          class="gallery-img" 
+          width={400} 
+          height={500} 
+          quality="max" 
+          densities={[1.5, 2]} 
+          format="webp" 
+        />
+        <Image 
+          src={img2} 
+          alt="Miguel and Tim 2" 
+          class="gallery-img" 
+          width={400} 
+          height={500} 
+          quality="max" 
+          densities={[1.5, 2]} 
+          format="webp" 
+        />
+        <Image 
+          src={img3} 
+          alt="Miguel and Tim 3" 
+          class="gallery-img" 
+          width={400} 
+          height={500} 
+          quality="max" 
+          densities={[1.5, 2]} 
+          format="webp" 
+        />
       </div>
+
+      <h2>Our Story</h2>
+      <p>This is a blurb</p>
     </div>
   </PageCard>
 </Layout>
 
 <style>
   .card-content {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.6;
-    color: #4a4a4a;
+    color: var(--text-dark);
     text-align: center;
   }
 
-  .image-placeholder {
-    margin-top: 2rem;
-    width: 100%;
-    height: 350px;
-    background-color: #f8f8f8;
-    border-radius: 12px;
+  .welcome-text {
+    font-family: var(--font-body);
+    margin-bottom: 2rem;
+  }
+
+  .photo-gallery {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #a0a0a0;
-    font-style: italic;
-    border: 2px dashed #e0e0e0;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 2rem;
+    flex-wrap: nowrap; /* Force single line */
+  }
+
+  .gallery-img {
+    flex: 0 1 30%; /* Force equal width and allow shrinking */
+    min-width: 0; /* Critical flexbox fix to allow shrinking below natural size */
+    max-width: 260px; /* Restrict width to make them smaller */
+    height: 350px; /* Proportional fixed height */
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(42, 46, 41, 0.1);
+    border: 1px solid var(--accent-sage);
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-img:hover {
+    transform: translateY(-5px);
+  }
+
+  @media (max-width: 768px) {
+    .photo-gallery {
+      flex-direction: column;
+      height: auto;
+    }
+    
+    .gallery-img {
+      height: auto;
+      max-height: 500px;
+    }
   }
 </style>
