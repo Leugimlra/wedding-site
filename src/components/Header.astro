@@ -2,17 +2,48 @@
 ---
 <header class="wedding-header">
   <div class="header-container">
-    <a href="/" class="logo">M &amp; T</a>
-    <nav class="nav-links">
+    <a href="/" class="logo">T &amp; M</a>
+    
+    <!-- Desktop Nav -->
+    <nav class="nav-links desktop-nav">
       <a href="/">Home</a>
       <a href="/wedding-party">Wedding Party</a>
       <a href="/directions">Directions</a>
       <a href="/faqs">FAQs</a>
     </nav>
+
+    <!-- Mobile Hamburger Button -->
+    <button class="hamburger" id="hamburger-menu" aria-label="Toggle Navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
+
+  <!-- Mobile Nav Dropdown -->
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="/">Home</a>
+    <a href="/wedding-party">Wedding Party</a>
+    <a href="/directions">Directions</a>
+    <a href="/faqs">FAQs</a>
+  </nav>
 </header>
 
-<style>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger-menu');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    if (hamburger && mobileNav) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open');
+      });
+    }
+  });
+</script>
+
+<style is:global>
   .wedding-header {
     background: rgba(239, 236, 229, 0.85); /* Slightly transparent primary beige */
     backdrop-filter: blur(12px);
@@ -43,6 +74,7 @@
     text-decoration: none;
     letter-spacing: 2px;
     transition: transform 0.3s ease;
+    z-index: 1002;
   }
 
   .logo:hover {
@@ -87,9 +119,97 @@
     width: 100%;
   }
 
+  /* Hamburger Menu Button */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1002;
+  }
+
+  .hamburger span {
+    width: 2rem;
+    height: 0.2rem;
+    background: var(--text-dark);
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+  }
+
+  /* Hamburger Open Animations */
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg);
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg);
+  }
+
+  /* Mobile Dropdown Nav */
+  .mobile-nav {
+    display: none; /* Default to completely hidden */
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-primary); /* matches header */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 2rem 0;
+    box-shadow: 0 10px 25px rgba(42, 46, 41, 0.05);
+    border-bottom: 1px solid var(--accent-sage);
+    z-index: 999;
+  }
+
+  .mobile-nav.open {
+    display: flex;
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-10%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .mobile-nav a {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 100%;
+    text-align: center;
+    transition: background 0.3s ease;
+  }
+
+  .mobile-nav a:hover {
+    background: var(--accent-sage);
+  }
+
   @media (max-width: 768px) {
-    .nav-links {
-      display: none;
+    .desktop-nav {
+      display: none !important;
+    }
+    .hamburger {
+      display: flex !important;
     }
   }
 </style>

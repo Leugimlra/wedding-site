@@ -1,89 +1,188 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import PageCard from '../components/PageCard.astro';
+import Layout from "../layouts/Layout.astro";
+import PageCard from "../components/PageCard.astro";
 ---
 
 <Layout>
-  <PageCard title="Directions" subtitle="How to get to our venue">
-    <div class="directions-content">
-      <div class="venue-info">
-        <h2>The Grand Estate</h2>
-        <p>123 Celebration Lane<br/>Beautiful City, ST 12345</p>
-      </div>
+    <PageCard title="Directions" subtitle="How to get to the party">
+        <div class="directions-content">
+            <div class="venues-container">
+                <div class="venue-row">
+                    <div class="venue-label">
+                        <h2>Ceremony</h2>
+                    </div>
+                    <div class="venue-details">
+                        <h3>First Church in Marlborough</h3>
+                        <p>37 High St<br />Marlborough, MA 01752</p>
+                    </div>
+                </div>
+            </div>
 
-      <div class="map-placeholder">
-        <span>Interactive Map Placeholder</span>
-      </div>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.7154697305587!2d-71.54788202357078!3d42.34858927119402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e38b689b278803%3A0x3666b7da02003876!2sFirst%20Church%20Marlborough!5e0!3m2!1sen!2sus!4v1780449076696!5m2!1sen!2sus"
+                    width="100%"
+                    height="500px"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer"></iframe>
+            </div>
 
-      <div class="instructions">
-        <h3>Driving Instructions</h3>
-        <p>From the North: Take Highway 1 South, exit at Celebration Lane. Turn right and follow the signs for 2 miles.</p>
-        <p>From the South: Take Highway 1 North, exit at Celebration Lane. Turn left and follow the signs for 2 miles.</p>
-        
-        <h3>Parking</h3>
-        <p>Valet parking will be available at the main entrance. Self-parking is also located at the rear of the estate.</p>
-      </div>
-    </div>
-  </PageCard>
+            <div class="instructions">
+                <h3>Parking at First Church</h3>
+                <p>
+                    Please park in the lot at the rear of the church.
+                    The entrance can be found on Bolton St.
+                </p>
+            </div>
+
+            <div class="venues-container">
+                <div class="venue-row">
+                    <div class="venue-label">
+                        <h2>Reception</h2>
+                    </div>
+                    <div class="venue-details">
+                        <h3>Sanctuary</h3>
+                        <p>82 Main St<br />Maynard, MA 01754</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/d/embed?mid=1Q-b2L77amn_zqGvtE-DsMVexZrcfrJI&ehbc=2E312F&noprof=1"
+                    width="100%"
+                    height="500px"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer"></iframe>
+            </div>
+
+            <div class="instructions">
+                <h3>Parking at Sanctuary</h3>
+                <p>
+                    Free parking can be found in lots on Walnut St., River St., and Main St. 
+                    There is minimal parking next to the actual venue, so please plan to park in one of these lots.
+                    Click on the sidebar in the map above to get directions. 
+                    All lots are within walking distance of the venue.
+                </p>
+            </div>
+        </div>
+    </PageCard>
 </Layout>
 
 <style>
-  .directions-content {
-    text-align: center;
-  }
+    .directions-content {
+        width: 100%;
+    }
 
-  .venue-info h2 {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    color: var(--text-dark);
-    margin-bottom: 0.5rem;
-  }
+    .venues-container {
+        max-width: 600px;
+        margin: 0 auto 3rem auto;
+        background: var(--bg-primary); /* Beige contrasting card */
+        border-radius: 12px;
+        padding: 2.5rem 2.5rem;
+        border: 2px solid var(--accent-sage);
+        box-shadow: 0 10px 25px rgba(42, 46, 41, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
 
-  .venue-info p {
-    font-family: var(--font-body);
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    line-height: 1.5;
-  }
+    .venue-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--accent-sage);
+        padding-bottom: 1.5rem;
+    }
 
-  .map-placeholder {
-    margin: 3rem 0;
-    width: 100%;
-    height: 300px;
-    background-color: var(--bg-primary);
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-muted);
-    font-style: italic;
-    border: 2px dashed var(--accent-sage);
-  }
+    .venue-row:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
 
-  .instructions {
-    text-align: left;
-    background: var(--bg-card);
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid var(--accent-sage);
-  }
+    .venue-label {
+        text-align: left;
+    }
 
-  .instructions h3 {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    color: var(--text-dark);
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-  }
+    .venue-label h2 {
+        font-family: var(--font-display);
+        font-size: 2.2rem;
+        color: var(--text-dark);
+        margin: 0;
+    }
 
-  .instructions h3:first-child {
-    margin-top: 0;
-  }
+    .venue-details {
+        text-align: right;
+    }
 
-  .instructions p {
-    font-family: var(--font-body);
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
+    .venue-details h3 {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        color: var(--text-dark);
+        margin: 0 0 0.5rem 0;
+    }
+
+    .venue-details p {
+        font-family: var(--font-body);
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    .map-container {
+        margin: 3rem 0;
+        width: 100%;
+        height: 500px;
+        background-color: var(--bg-primary);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--accent-sage);
+        box-shadow: 0 10px 25px rgba(42, 46, 41, 0.03);
+    }
+
+    .instructions {
+        max-width: 500px;
+        margin: 0 auto 4rem auto;
+        text-align: center;
+        background: var(--bg-card); /* White, less contrasting */
+        border-radius: 10px;
+        padding: 1.5rem 2rem;
+        border: 1px solid var(--accent-sage); /* Thinner border */
+    }
+
+    .instructions:empty {
+        display: none;
+    }
+
+    .instructions h3 {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        color: var(--text-dark);
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .instructions p {
+        font-family: var(--font-body);
+        color: var(--text-muted);
+        line-height: 1.5;
+        margin-bottom: 0;
+        font-size: 1rem;
+    }
+
+    @media (max-width: 600px) {
+        .venue-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .venue-details {
+            text-align: left;
+        }
+    }
 </style>
