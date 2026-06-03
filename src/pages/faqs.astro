@@ -1,38 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageCard from '../components/PageCard.astro';
+import FAQCard from '../components/FAQCard.astro';
 ---
 
 <Layout>
   <PageCard title="FAQs" subtitle="Everything you need to know">
     <div class="faq-accordion">
-      <details class="faq-item" name="faq">
-        <summary>What is the dress code?</summary>
-        <div class="faq-content">
-          <p>We kindly request formal attire. For men, this means a suit and tie. For women, an elegant cocktail dress or full-length gown is perfect.</p>
-        </div>
-      </details>
+      <FAQCard 
+        question="What is the dress code?" 
+        answer="We kindly request formal attire. For men, this means a suit and tie. For women, an elegant cocktail dress or full-length gown is perfect." 
+      />
 
-      <details class="faq-item" name="faq">
-        <summary>Are children invited?</summary>
-        <div class="faq-content">
-          <p>While we love your little ones, our wedding is an adults-only event so that everyone can relax and enjoy the evening.</p>
-        </div>
-      </details>
+      <FAQCard 
+        question="Are children invited?" 
+        answer="While we love your little ones, our wedding is an adults-only event so that everyone can relax and enjoy the evening." 
+      />
 
-      <details class="faq-item" name="faq">
-        <summary>Is there a hotel block?</summary>
-        <div class="faq-content">
-          <p>Yes, we have reserved a block of rooms at the nearby Grand Hotel. Please mention our names when booking to receive the discounted rate.</p>
-        </div>
-      </details>
+      <FAQCard 
+        question="Is there a hotel block?" 
+        answer="Yes, we have reserved a block of rooms at the nearby Grand Hotel. Please mention our names when booking to receive the discounted rate." 
+      />
 
-      <details class="faq-item" name="faq">
-        <summary>Will the ceremony be indoors or outdoors?</summary>
-        <div class="faq-content">
-          <p>Weather permitting, the ceremony will take place outdoors in the garden. The reception will be held indoors.</p>
-        </div>
-      </details>
+      <FAQCard 
+        question="Will the ceremony be indoors or outdoors?" 
+        answer="Weather permitting, the ceremony will take place outdoors in the garden. The reception will be held indoors." 
+      />
     </div>
   </PageCard>
 </Layout>
@@ -42,82 +35,5 @@ import PageCard from '../components/PageCard.astro';
     display: flex;
     flex-direction: column;
     gap: 1rem;
-  }
-
-  .faq-item {
-    background: var(--bg-card);
-    border: 1px solid var(--accent-sage);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: box-shadow 0.3s ease;
-  }
-
-  .faq-item:hover {
-    box-shadow: 0 4px 15px rgba(42,46,41,0.03);
-  }
-
-  .faq-item[open] {
-    border-color: var(--text-dark); /* Highlight border when open */
-  }
-
-  summary {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    padding: 1.5rem;
-    cursor: pointer;
-    list-style: none; /* Hide default arrow */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    user-select: none;
-  }
-
-  summary::-webkit-details-marker {
-    display: none;
-  }
-
-  summary::after {
-    content: '+';
-    font-size: 1.5rem;
-    color: var(--text-dark);
-    transition: transform 0.3s ease;
-  }
-
-  .faq-item[open] summary::after {
-    content: '-';
-    transform: rotate(180deg);
-  }
-
-  .faq-content {
-    padding: 0 1.5rem 1.5rem 1.5rem;
-    animation: fadeIn 0.4s ease-in-out;
-  }
-
-  .faq-content p {
-    font-family: var(--font-body);
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin: 0;
-    border-top: 1px solid var(--accent-sage);
-    padding-top: 1rem;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-5px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (max-width: 768px) {
-    summary {
-      font-size: 1.2rem;
-    }
   }
 </style>
