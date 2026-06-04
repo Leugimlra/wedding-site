@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageCard from "../components/PageCard.astro";
+---
+
+<!-- TODO: Include Deadline -->
+
+<Layout>
+    <PageCard
+        title="RSVP"
+        subtitle="Let us know if you can make it"
+        maxWidth="800px"
+    >
+        <div class="iframe-placeholder">
+            <!-- <iframe src="..." width="100%" height="600px" frameborder="0"></iframe> -->
+            <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSfDbvJWDTXJutScIkj5TMRQQFAkjv2nY04_Hw3uKp3T5EbGnA/viewform?embedded=true"
+                width="100%"
+                height="600px"
+            >
+                Loading…
+            </iframe>
+        </div>
+    </PageCard>
+</Layout>
+
+<style>
+    .iframe-placeholder {
+        width: 100%;
+        height: 600px;
+        background-color: var(--bg-primary);
+        border: 2px dashed var(--accent-sage);
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .iframe-placeholder p {
+        font-family: var(--font-body);
+        color: var(--text-muted);
+        font-size: 1.2rem;
+        font-style: italic;
+    }
+</style>
