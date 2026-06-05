@@ -1,16 +1,15 @@
 ---
 export interface Props {
   question: string;
-  answer: string;
 }
 
-const { question, answer } = Astro.props;
+const { question } = Astro.props;
 ---
 
 <details class="faq-item" name="faq">
   <summary>{question}</summary>
   <div class="faq-content">
-    <p>{answer}</p>
+    <slot />
   </div>
 </details>
 
