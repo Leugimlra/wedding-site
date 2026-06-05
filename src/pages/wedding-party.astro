@@ -3,65 +3,112 @@ import Layout from "../layouts/Layout.astro";
 import PageCard from "../components/PageCard.astro";
 import PartyMember from "../components/PartyMember.astro";
 
-import tatyana from "../assets/wedding-party/taty.png";
+import brenda from "../assets/wedding-party/brenda.png";
+import gib from "../assets/wedding-party/gib.png";
+import inez from "../assets/wedding-party/inez.png";
+import jae from "../assets/wedding-party/jae.png";
 import katie from "../assets/wedding-party/katie.png";
 import lizzie from "../assets/wedding-party/lizzie.png";
-import inez from "../assets/wedding-party/inez.png";
+import mike from "../assets/wedding-party/mike.png";
+import mariz from "../assets/wedding-party/mariz.png";
+// TODO: Nikki's pic
 import olivia from "../assets/wedding-party/olivia.png";
-import jae from "../assets/wedding-party/jae.png";
+import rianne from "../assets/wedding-party/rianne.png";
+import taty from "../assets/wedding-party/taty.png";
+import vic from "../assets/wedding-party/vic.png";
+import will from "../assets/wedding-party/will.png";
 ---
 
 <Layout>
     <PageCard
         title="Our Wedding Party"
         subtitle="The people standing by our side"
-        maxWidth="900px"
-    >
+        maxWidth="1000px"
+        >
         <div class="party-list">
+            <PartyMember
+            name="Olivia"
+            role="Sister of the Grooms"
+            image={olivia}
+            />
+
             <PartyMember 
-                name="Tatyana" 
-                role="" 
-                blurb="" 
-                image={tatyana} 
+            name="William" 
+            role="Brother of the Grooms"
+            image={will} 
+            />
+
+             <PartyMember 
+            name="Michael" 
+            role="Brother of the Grooms"
+            image={mike} 
+            />
+
+            <PartyMember 
+            name="Yamariz" 
+            role="Sister of the Grooms"
+            image={mariz} 
+            />
+
+            <PartyMember 
+            name="Lizzie" 
+            role="Sister of the Grooms"
+            image={lizzie} 
             />
 
             <PartyMember
-                name="Katie"
-                role=""
-                blurb=""
-                image={katie}
-                reverse={true}
+            name="Katie"
+            role="Sister of the Grooms"
+            image={katie}
+            />
+            
+            <PartyMember 
+            name="Gabriella" 
+            role="Sister of the Grooms"
+            image={gib} 
+            />
+            
+            <PartyMember 
+            name="Victoria" 
+            role="Sister of the Grooms"
+            image={vic} 
+            />
+            
+            <PartyMember 
+            name="Brenda" 
+            role="Groomswoman"
+            image={brenda} 
             />
 
             <PartyMember 
-                name="Lizzie" 
-                role="" 
-                blurb="" 
-                image={lizzie} 
-            />
-
-            <PartyMember
-                name="Olivia"
-                role=""
-                blurb=""
-                image={olivia}
-                reverse={true}
+            name="Inéz" 
+            role="Groomswoman"
+            image={inez} 
             />
 
             <PartyMember 
-                name="Inéz" 
-                role="" 
-                blurb="" 
-                image={inez} 
+            name="Jaelyn" 
+            role="Groomswoman"
+            image={jae} 
             />
 
             <PartyMember 
-                name="Jaelyn" 
-                role="" 
-                blurb="" 
-                image={jae} 
-                reverse={true}
+            name="Nikki" 
+            role="Groomswoman"
+            image={jae} 
             />
+
+            <PartyMember 
+            name="Rianne" 
+            role="Groomswoman"
+            image={rianne} 
+            />
+
+            <PartyMember 
+            name="Tatyana" 
+            role="Groomswoman"
+            image={taty} 
+            />   
 
         </div>
     </PageCard>
@@ -69,8 +116,21 @@ import jae from "../assets/wedding-party/jae.png";
 
 <style>
     .party-list {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .party-list {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .party-list {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
