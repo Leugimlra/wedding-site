@@ -4,23 +4,21 @@ import { Image } from 'astro:assets';
 
 export interface Props {
   name: string;
-  role: string;
-  blurb: string;
+  role?: string;
   image: ImageMetadata;
-  reverse?: boolean;
 }
 
-const { name, role, blurb, image, reverse = false } = Astro.props;
+const { name, role, image } = Astro.props;
 ---
 
-<div class={`party-member ${reverse ? 'reverse' : ''}`}>
+<div class="party-member">
   <div class="portrait-container">
     <Image 
       src={image} 
       alt={name} 
       class="portrait-image" 
-      width={240} 
-      height={240} 
+      width={400} 
+      height={400} 
       quality="max" 
       densities={[1.5, 2]} 
       format="webp" 
@@ -28,21 +26,23 @@ const { name, role, blurb, image, reverse = false } = Astro.props;
   </div>
   <div class="member-info">
     <h2>{name}</h2>
-    <p class="role">{role}</p>
-    <p class="blurb">{blurb}</p>
+    {role && <p class="role">{role}</p>}
   </div>
 </div>
 
 <style>
   .party-member {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    text-align: center;
+    gap: 1.2rem;
     background: var(--bg-card);
     padding: 1.5rem;
     border-radius: 12px;
     border: 1px solid var(--accent-sage);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 0;
   }
 
   .party-member:hover {
@@ -50,20 +50,12 @@ const { name, role, blurb, image, reverse = false } = Astro.props;
     box-shadow: 0 10px 25px rgba(42,46,41,0.05);
   }
 
-  .party-member.reverse {
-    flex-direction: row-reverse;
-  }
-
   .portrait-container {
-    flex-shrink: 0;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 2px solid var(--accent-sage);
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    border: 1px solid var(--accent-sage);
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: var(--bg-primary);
   }
 
@@ -75,9 +67,9 @@ const { name, role, blurb, image, reverse = false } = Astro.props;
 
   .member-info h2 {
     font-family: var(--font-display);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: var(--text-dark);
-    margin: 0 0 0.2rem 0;
+    margin: 0;
   }
 
   .role {
@@ -85,22 +77,8 @@ const { name, role, blurb, image, reverse = false } = Astro.props;
     color: var(--text-muted);
     font-weight: 600;
     font-size: 0.95rem;
-    margin: 0 0 1rem 0;
+    margin: 0.3rem 0 0 0;
     text-transform: uppercase;
     letter-spacing: 1px;
-  }
-
-  .blurb {
-    font-family: var(--font-body);
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  @media (max-width: 768px) {
-    .party-member, .party-member.reverse {
-      flex-direction: column;
-      text-align: center;
-    }
   }
 </style>

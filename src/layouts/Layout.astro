@@ -6,8 +6,8 @@ import Header from '../components/Header.astro';
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+		<link rel="icon" href="/favicon.ico?v=2" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Timothy and Miguel</title>
 		
@@ -15,6 +15,7 @@ import Header from '../components/Header.astro';
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Bellefair&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<Header />
@@ -25,23 +26,14 @@ import Header from '../components/Header.astro';
 </html>
 
 <style is:global>
-    @font-face {
-        font-family: 'TAN Mon Cheri';
-        src: url('/fonts/TAN-MONCHERI.woff2') format('woff2'),
-             url('/fonts/TAN-MONCHERI.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-    }
-
 	:root {
 		--bg-primary: #EFECE5; /* Light warm beige */
 		--bg-card: #FCFBF9; /* Nearly white for contrast */
-		--accent-sage: #D2D9CC; /* Muted sage green from the image blob */
+		--accent-sage: #a9bb99; /* Muted sage green from the image blob */
 		--text-dark: #2b2b2b; /* Dark text */
 		--text-muted: #2b2b2b; /* Muted dark text */
 		--font-body: 'Bellefair', serif;
-		--font-display: 'TAN Mon Cheri', serif;
+		--font-display: "Caudex", serif;
 	}
 	html,
 	body {

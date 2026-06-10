@@ -9,7 +9,8 @@ import PageCard from "../components/PageCard.astro";
             <div class="venues-container">
                 <div class="venue-row">
                     <div class="venue-label">
-                        <h2>Ceremony</h2>
+                        <h2>Ceremony - 4pm</h2>
+                        <h3>Prelude Concert - 3:30pm</h3>
                     </div>
                     <div class="venue-details">
                         <h3>First Church in Marlborough</h3>
@@ -40,7 +41,7 @@ import PageCard from "../components/PageCard.astro";
             <div class="venues-container">
                 <div class="venue-row">
                     <div class="venue-label">
-                        <h2>Reception</h2>
+                        <h2>Reception - 5pm</h2>
                     </div>
                     <div class="venue-details">
                         <h3>Sanctuary</h3>
@@ -63,9 +64,9 @@ import PageCard from "../components/PageCard.astro";
             <div class="instructions">
                 <h3>Parking at Sanctuary</h3>
                 <p>
-                    Free parking can be found in lots on Walnut St., River St., and Main St. 
-                    There is minimal parking next to the actual venue, so please plan to park in one of these lots.
-                    Click on the sidebar in the map above to get directions. 
+                    Free parking can be found in lots on Walnut St., River St., and off of Main St. 
+                    There is no parking next to the actual venue, so please plan to park in one of these lots.
+                    Click on the sidebar in the map above to see a list of the lots (marked in blue).    
                     All lots are within walking distance of the venue.
                 </p>
             </div>
@@ -93,8 +94,10 @@ import PageCard from "../components/PageCard.astro";
 
     .venue-row {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: center;
+        gap: 1.5rem;
+        text-align: center;
         border-bottom: 1px solid var(--accent-sage);
         padding-bottom: 1.5rem;
     }
@@ -105,7 +108,7 @@ import PageCard from "../components/PageCard.astro";
     }
 
     .venue-label {
-        text-align: left;
+        text-align: center;
     }
 
     .venue-label h2 {
@@ -115,8 +118,12 @@ import PageCard from "../components/PageCard.astro";
         margin: 0;
     }
 
+    .venue-label h3 {
+        margin: 0.5rem 0 0 0;
+    }
+
     .venue-details {
-        text-align: right;
+        text-align: center;
     }
 
     .venue-details h3 {
@@ -173,16 +180,5 @@ import PageCard from "../components/PageCard.astro";
         line-height: 1.5;
         margin-bottom: 0;
         font-size: 1rem;
-    }
-
-    @media (max-width: 600px) {
-        .venue-row {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        .venue-details {
-            text-align: left;
-        }
     }
 </style>

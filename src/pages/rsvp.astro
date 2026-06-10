@@ -3,45 +3,186 @@ import Layout from "../layouts/Layout.astro";
 import PageCard from "../components/PageCard.astro";
 ---
 
-<!-- TODO: Include Deadline -->
-
 <Layout>
     <PageCard
         title="RSVP"
         subtitle="Let us know if you can make it"
         maxWidth="800px"
     >
-        <div class="iframe-placeholder">
-            <!-- <iframe src="..." width="100%" height="600px" frameborder="0"></iframe> -->
-            <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSfDbvJWDTXJutScIkj5TMRQQFAkjv2nY04_Hw3uKp3T5EbGnA/viewform?embedded=true"
-                width="100%"
-                height="600px"
-            >
-                Loading…
-            </iframe>
+        <div id="rsvp-form-container" class="form-container">
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label for="confirming">Will you be attending?</label>
+                    <select id="confirming" name="confirming" required>
+                        <option value="">Select an option</option>
+                        <option value="yes">Accept</option>
+                        <option value="no">Decline</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="howMany">How many people are attending?</label>
+                    <input type="number" id="howMany" name="howMany" min="0" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="names">Names (as they appear on the invitation)</label>
+                    <textarea id="names" name="names" rows="2" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="allergies">Allergies or Dietary Restrictions</label>
+                    <textarea id="allergies" name="allergies" rows="2" placeholder="Leave blank if none"></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn">Submit RSVP</button>
+                <p id="formError" class="error-message"></p>
+            </form>
+        </div>
+
+        <div id="success-state" class="success-message hidden">
+            <h3>Thank You!</h3>
+            <p>Your RSVP has been securely received.</p>
         </div>
     </PageCard>
 </Layout>
 
 <style>
-    .iframe-placeholder {
+    .form-container {
         width: 100%;
-        height: 600px;
         background-color: var(--bg-primary);
-        border: 2px dashed var(--accent-sage);
+        border: 2px solid var(--accent-sage);
         border-radius: 12px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 2rem;
         margin-top: 1rem;
-        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.02);
+        box-sizing: border-box;
     }
 
-    .iframe-placeholder p {
+    .form-group {
+        margin-bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    label {
+        font-family: var(--font-body);
+        font-weight: 600;
+        color: var(--text-main);
+    }
+
+    input, select, textarea {
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: var(--accent-sage);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        transition: opacity 0.2s;
+        width: 100%;
+    }
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+    button:disabled {
+        background-color: #999;
+        cursor: not-allowed;
+    }
+
+    .error-message {
+        margin-top: 1rem;
+        font-family: var(--font-body);
+        color: #d9534f;
+        text-align: center;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    .success-message {
+        text-align: center;
+        padding: 3rem;
+        background-color: var(--bg-primary);
+        border: 2px solid var(--accent-sage);
+        border-radius: 12px;
+        margin-top: 1rem;
+    }
+
+    .success-message h3 {
+        font-family: var(--font-heading);
+        margin-bottom: 0.5rem;
+    }
+
+    .success-message p {
         font-family: var(--font-body);
         color: var(--text-muted);
-        font-size: 1.2rem;
-        font-style: italic;
     }
 </style>
+
+<script>
+    const form = document.getElementById('rsvpForm') as HTMLFormElement;
+    const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+    const formError = document.getElementById('formError') as HTMLParagraphElement;
+    const formContainer = document.getElementById('rsvp-form-container') as HTMLDivElement;
+    const successState = document.getElementById('success-state') as HTMLDivElement;
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            formError.textContent = '';
+
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwObCMsc4OWhV0A5Uqpa-aVFT56-5ogFXjVjQLOqQ1vEur2K2fXj5F-azpHTlraaHzM/exec'; // Replace with deployed Apps Script URL
+            const formData = new FormData(form);
+            
+            const payload = {
+                confirming: formData.get('confirming'),
+                howMany: formData.get('howMany'),
+                names: formData.get('names'),
+                allergies: formData.get('allergies') || 'None'
+            };
+
+            try {
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8', 
+                    }
+                });
+
+                const result = await response.json();
+
+                if (result.status === "success") {
+                    formContainer.classList.add('hidden');
+                    successState.classList.remove('hidden');
+                } else {
+                    throw new Error(result.message || "Server error");
+                }
+            } catch (error) {
+                console.error("Submission failed:", error);
+                formError.textContent = "There was an issue sending your RSVP. Please try again.";
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit RSVP';
+            }
+        });
+    }
+</script>
