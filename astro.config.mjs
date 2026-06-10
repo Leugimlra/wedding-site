@@ -1,7 +1,5 @@
-import { defineConfig, passthroughImageService } from 'astro/config';
+// @ts-check
+import { defineConfig } from 'astro/config';
 
-export default defineConfig({
-    image: {
-        service: passthroughImageService()
-    }
-});
+// https://astro.build/config
+export default defineConfig({});

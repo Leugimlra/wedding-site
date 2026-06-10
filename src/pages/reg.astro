@@ -1,0 +1,83 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageCard from "../components/PageCard.astro";
+---
+
+<Layout>
+    <PageCard title="Registry" subtitle="A vision for our future">
+        <div class="registry-container">
+            <a
+                href="https://www.crateandbarrel.com/gift-registry/miguel-lopez-rivera-and-timothy-goliger/r7570533"
+                class="registry-card"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <span class="registry-name">Crate &amp; Barrel</span>
+                <span class="registry-arrow">→</span>
+            </a>
+            <a
+                href="https://www.amazon.com/wedding/guest-view/283GFWZL8TAAX"
+                class="registry-card"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <span class="registry-name">Amazon</span>
+                <span class="registry-arrow">→</span>
+            </a>
+        </div>
+    </PageCard>
+</Layout>
+
+<style>
+    .registry-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .registry-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 2.5rem;
+        background: var(--bg-primary);
+        border: 2px solid var(--accent-sage);
+        border-radius: 12px;
+        text-decoration: none;
+        color: var(--text-dark);
+        box-shadow: 0 8px 20px rgba(42, 46, 41, 0.05);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .registry-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 35px rgba(42, 46, 41, 0.10);
+        background: var(--bg-card);
+    }
+
+    .registry-name {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        font-weight: normal;
+        letter-spacing: 1px;
+    }
+
+    .registry-arrow {
+        font-family: var(--font-body);
+        font-size: 1.5rem;
+        color: var(--accent-sage);
+        transition: transform 0.25s ease;
+    }
+
+    .registry-card:hover .registry-arrow {
+        transform: translateX(5px);
+    }
+
+    @media (max-width: 768px) {
+        .registry-name {
+            font-size: 1.4rem;
+        }
+    }
+</style>
